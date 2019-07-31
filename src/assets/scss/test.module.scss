@@ -1,0 +1,22 @@
+.box {
+  flex: 0 200px;
+  height: 200px;
+}
+:global(.title) {
+  color: green;
+  &::before {
+    content: "\2713"
+  } 
+}
+.moudle7 {
+  display: flex;
+  justify-content: space-around;
+}
+.red {
+  composes:box;
+  background-color: #f00;
+}
+.green {
+  composes:box;
+  background-color: #0f0;
+}
