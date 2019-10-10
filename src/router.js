@@ -8,6 +8,8 @@ import Jsx from './views/jsx/Jsx.vue'
 import Cesium from './views/Cesium.vue'
 import AMap from './views/AMap.vue'
 import AFrame from './views/AFrame.vue'
+import Gsap from './views/Gsap.vue'
+import Frame from './views/Frame/Frame.vue'
 
 Vue.use(Router)
 
@@ -52,6 +54,16 @@ let router = new Router({
       path: '/aframe',
       name: 'aframe',
       component: AFrame
+    },
+    {
+      path: '/gsap',
+      name: 'gsap',
+      component: Gsap
+    },
+    {
+      path: '/frame',
+      name: 'frame',
+      component: Frame
     },
   ]
 })

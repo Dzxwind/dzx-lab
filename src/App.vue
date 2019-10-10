@@ -8,7 +8,9 @@
       <router-link to="/jsx">jsx</router-link> |
       <router-link to="/cesium">cesium</router-link> |
       <router-link to="/amap">amap</router-link> |
-      <router-link to="/aframe">aframe</router-link>
+      <router-link to="/aframe">aframe</router-link> |
+      <router-link to="/gsap">GSAP</router-link> |
+      <router-link to="/frame">Frame</router-link>
     </div>
     <router-view/>
   </div>
@@ -18,7 +20,7 @@
 export default {
   data() {
     return {
-      exceptItem:['cesium','amap','aframe']
+      exceptItem:['cesium','amap','aframe','frame']
     }
   },
   computed:{

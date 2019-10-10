@@ -20,6 +20,11 @@ module.exports = {
             target: 'http://www.google.cn',
             changeOrigin: true,
             pathRewrite: {'^/map': 'http://www.google.cn'}
+        },
+        '/test' :{
+          target: 'http://172.16.70.66:8767',
+          changeOrigin: true,
+          pathRewrite: {'^/test': 'http://172.16.70.66:8767'}
         }
     },
     progress: true,

@@ -22,7 +22,7 @@
       <label for="awesome">awesome!</label>
     </div>
     <div class="moudle moudle5 tour-list">
-      <transition-group name="list-complete" class="tour-wrapper" tag="div">
+      <transition-group name="list-complete" class="tour-wrapper" tag="div" mode="out-in">
         <div class="tour-list_i" v-for="item in showTourList" :key="item.name">
           <div class="tour-list-img">
             <!-- <img :src="item.img"> -->
@@ -51,6 +51,12 @@
         <div class="shadow"></div>
       </div>
     </div>
+    <div class="moudle moudle9">
+      <div class="polygon" :class="{animated:isModle9}" @click="isModle9 = !isModle9"></div>
+    </div>
+    <div class="moudle moudle10">
+      <div class="block"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -58,6 +64,7 @@ import test from "@style/test.module.scss"
 export default {
   data(){
     return{
+        isModle9:false,
        benefitList: [
         "1.取消经营性一级公路收费站",
         "2.驾驶员网络教育免费培训",
@@ -360,6 +367,47 @@ export default {
         animation: shadow 2s infinite ease-in-out;
         bottom: 0;
       }
+    }
+  }
+  .moudle9 {
+    display: flex;
+    justify-content: center;
+    .polygon {
+      width: 200px;
+      height: 80px;
+      background-color: #58a;
+      transition: all 0.5s;
+      transform: perspective(50px) rotateX(10deg);
+      &.animated {
+        transform: perspective(50px) rotateX(-10deg);
+      }
+    }
+  }
+  .moudle10 {
+    @keyframes changePath {
+      0% {
+        clip-path: polygon(0 0,0 0,0 100%,0 100%);
+      }
+      33% {
+        clip-path: polygon(50% 0, 100% 100%,0 100%);
+      }
+      66% {
+        clip-path: ellipse(50% 50%)
+      }
+      100% {
+        clip-path: polygon(0 0,0 0,0 100%,0 100%);
+      }
+    }
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    margin: 20px 0;
+    .block {
+      width: 300px;
+      height: 300px;
+      background-color: #58a;
+      clip-path: polygon(0 0,0 0,0 100%,0 100%);
+      animation: changePath 2s linear infinite alternate;
     }
   }
 }
