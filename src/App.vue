@@ -10,7 +10,8 @@
       <router-link to="/amap">amap</router-link> |
       <router-link to="/aframe">aframe</router-link> |
       <router-link to="/gsap">GSAP</router-link> |
-      <router-link to="/frame">Frame</router-link>
+      <router-link to="/frame">Frame</router-link> |
+      <router-link to="/svg">Svg</router-link> |
     </div>
     <router-view/>
   </div>

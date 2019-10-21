@@ -10,6 +10,7 @@ import AMap from './views/AMap.vue'
 import AFrame from './views/AFrame.vue'
 import Gsap from './views/Gsap.vue'
 import Frame from './views/Frame/Frame.vue'
+import Svg from './views/Svg.vue'
 
 Vue.use(Router)
 
@@ -64,6 +65,11 @@ let router = new Router({
       path: '/frame',
       name: 'frame',
       component: Frame
+    },
+    {
+      path: '/svg',
+      name: 'svg',
+      component: Svg
     },
   ]
 })
