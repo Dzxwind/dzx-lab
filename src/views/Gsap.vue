@@ -1,7 +1,7 @@
 <template>
   <div class="gsap">
     <div class="num-animate">
-      {{num|fixNum}}
+      今天的倒霉蛋是：{{fixNum}}
     </div>
     <div class="trans-ball">
       <div class="ball" id="transBall" ref="transBall" @click="transBallControl"></div>
@@ -33,6 +33,7 @@ export default {
       tagEnterAni:{},
       tagLeaveAni:{},
       num:0,
+      numArr:['王超杰','杨子初','范东'],
       transBallAni:{},
       fadeLogoList:[
         {
@@ -97,9 +98,10 @@ export default {
   methods: {
     flipNum() {
       TweenMax.to(this.$data,5,{
-        num:100,
-        repeat:-1,
-        yoyo:true,
+        num:Math.random() * 1000,
+        // num:100,
+        // repeat:-1,
+        // yoyo:true,
         onUpdate:() => {
           // console.log(this.num);
         }
@@ -198,9 +200,9 @@ export default {
     this.gsapAni();
     this.canvasInit();
   },
-  filters:{
-    fixNum(val) {
-      return Math.round(val);
+  computed: {
+    fixNum() {
+      return this.numArr[Math.round(this.num) % this.numArr.length];
     }
   }
 }

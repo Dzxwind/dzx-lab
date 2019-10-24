@@ -1,5 +1,6 @@
 <template>
   <div class="svg">
+    <h1>1.基本</h1>
     <svg x="0px" y="0px" width="300px" height="100px" viewbox="0 0 300 100">
       <rect x="10" y="5" fill="white" stroke="black" width="90" height="90"></rect>
       <circle cx="170" cy="50" r="45" fill="white" stroke="black"></circle>
@@ -27,6 +28,7 @@
         l0.4-37.3l-32.1-19l-32.5,18.3l-0.4,37.3l32.1,19L181.7,111.4z M118.8,73.9l31.5-17.8l31.1,18.4l-0.4,36.1l-31.5,17.8l-31.1-18.4
         L118.8,73.9z" />
     </svg>
+    <h1>2.描边动画</h1>
     <svg x="0px" y="0px" width="300px" height="100px" viewBox="0 0 300 100" class="svg1">
       <line x1="20" y1="50" x2="200" y2="50" stroke="#000" stroke-width="1"></line>
     </svg>
@@ -34,13 +36,87 @@
       <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
       <path ref="checkMark" class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
     </svg>
+    <h1>3.蒙版动画</h1>
+    <h2>裁剪</h2>
+    <svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <clipPath id="cut-off-bottom">
+          <rect x="0" y="0" width="200" height="100" />
+        </clipPath>
+      </defs>
+      <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
+    </svg>
+    <h2>蒙版</h2>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <linearGradient id="Gradient">
+          <stop offset="0" stop-color="white" stop-opacity="0" />
+          <stop offset="1" stop-color="white" stop-opacity="1" />
+        </linearGradient>
+        <mask id="Mask">
+          <rect x="0" y="0" width="200" height="200" fill="url(#Gradient)"  />
+        </mask>
+      </defs>
+      <rect x="0" y="0" width="200" height="200" fill="green" />
+      <rect x="0" y="0" width="200" height="200" fill="red" mask="url(#Mask)" />
+    </svg>
+    <h2>裁剪实战</h2>
+    <svg class="path-ani" height='85px' width="1920px">
+      <title>Animated clip-path SVG</title>
+      <defs>
+        <clipPath id="cd-image-1">
+          <circle id="cd-circle-1" cx="960" cy="47" r="20"/>
+        </clipPath>
+      </defs>
+      <image height='85px' width="1920px" clip-path="url(#cd-image-1)" :xlink:href="require('@/assets/title.png')"></image>
+    </svg>
+    <h2>蒙版实战</h2>
+    <svg class="mask-ani" height='217px' width="605px">
+      <title>Animated clip-path SVG</title>
+      <defs>
+        <mask id="my-mask">
+          <g class="mask-group">
+            <path class="st2" d="M0.500,18.500 L36.500,5.500 L36.500,195.500 "></path>
+            <path class="st2" d="M183.500,3.500 C183.500,3.500 235.618,-6.192 236.500,98.500 C237.577,226.319 131.500,236.738 131.500,96.500 C131.500,20.270 155.135,3.500 183.500,3.500 Z "></path>
+            <path class="st2" d="M310.500,42.500 C310.500,42.500 305.648,4.845 352.500,3.500 C430.491,1.260 380.500,86.500 380.500,86.500 C380.500,86.500 315.251,159.566 316.500,192.500 L407.500,192.500  "></path>
+            <path class="st2" d="M582.500,141.500 L471.500,141.500 L556.500,0.500 L556.500,195.500 "></path>
+          </g>
+        </mask>
+      </defs>
+      <image mask="url(#my-mask)" height='217px' width="605px" :xlink:href="require('@/assets/amazing.png')"></image>
+    </svg>
+    <h2>渐变文字</h2>
+    <svg class="gra-text" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 300" version="1.1">
+      <defs>
+        <linearGradient id="gradient" gradientUnits="userSpaceOnUse" class="gra-option" :gradientTransform="gradientRange" x2="800" y2="300">
+          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+          <stop offset="1" stop-color="#FFFFFF" stop-opacity="1"/>
+        </linearGradient>
+        <mask id="mask" maskUnits="userSpaceOnUse">
+          <rect width="800" height="300" fill="url(#gradient)"/>
+        </mask>
+        <text id="txt" x="400" y="150" font-family="Arial Black" font-size="60" text-anchor="middle">我！就是力量的化身！</text>
+      </defs>
+      <use xlink:href="#txt" fill="#e70c00" mask="url(#mask)"/>
+    </svg>
+    <svg class="shin-box" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 611 477">
+      <defs>
+        <mask id="shin-mask">
+          <rect class="rotate-mask" width="388" height="4" x="305" y="236" fill="white"  />
+        </mask>
+      </defs>
+      <rect mask="url(#shin-mask)" width="590px" height="450px" x="10px" y="20px" stroke="#4583d0" fill="#000" stroke-width="20px"  />
+      <image height='477' width="611" :xlink:href="require('@/assets/shin.png')"></image>
+    </svg>
   </div>
 </template>
 <script>
+import {TweenMax,TimelineMax} from "gsap"
 export default {
   data() {
     return {
-
+      graDegree:0,
+      rotateAni:null
     }
   },
   methods: {
@@ -48,11 +124,23 @@ export default {
       // 获取指定Path的长度
       const length = this.$refs.checkMark.getTotalLength();
       console.log(length);
+    },
+    startRotate() {
+      this.rotateAni = TweenMax.to(this.$data,5,{
+        graDegree:360,
+        repeat:-1,
+      })
     }
   },
   mounted() {
     this.getPathLength();
+    this.startRotate();
   },
+  computed:{
+    gradientRange() {
+      return `rotate(${this.graDegree})`
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -83,6 +171,14 @@ export default {
 @keyframes fill {
   100% {
     box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+@keyframes maskRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 .svg {
@@ -117,6 +213,48 @@ export default {
     stroke-dasharray: 34;
     stroke-dashoffset: 34;
     animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+  }
+  .path-ani {
+    @keyframes visible-clippath {
+      to {
+        r:1364;
+      }
+    }
+    #cd-image-1 circle { 
+      animation: visible-clippath 1s linear forwards infinite; 
+    }
+  }
+  .mask-ani {
+    .st2 {
+      stroke:#fff;
+      fill: none;
+      stroke-width: 40;
+      stroke-dasharray: 1200px;
+		  stroke-dashoffset: 1200px;
+      animation: stroke 3s linear forwards;
+    }
+    .mask-group {
+      .st2:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .st2:nth-child(2) {
+        animation-delay: 3s;
+      }
+      .st2:nth-child(3) {
+        animation-delay: 6s;
+      }
+      .st2:nth-child(4) {
+        animation-delay: 9s;
+      }
+    }
+  }
+  .shin-box {
+    width: 611px;
+    height: 477px;
+    .rotate-mask {
+      transform-origin: 50% 50%;
+      animation: maskRotate 10s linear infinite;
+    }
   }
 }
 </style>
