@@ -1,6 +1,6 @@
 <template>
   <div class="cesium">
-    <div id="cesiumContainer"></div>
+    <div id="cesiumContainer" @click="onMapClick"></div>
   </div>
 </template>
 
@@ -89,11 +89,30 @@ export default {
         }
       })
       this.viewer.zoomTo(polygon)
-    }
+    },
+    onMapClick(e) {
+      this.pick = null;
+      let windowPosition = new Cesium.Cartesian2(e.offsetX, e.offsetY);
+      var picked = this.viewer.scene.pick(windowPosition);
+      if (Cesium.defined(picked)) {
+        var id = Cesium.defaultValue(picked.id, picked.primitive.id);
+        if (id instanceof Cesium.Entity) {
+          this.pick = id;
+          if (id.type) {
+            this[`on${id.type}Click`]();
+          } else {
+            console.error("Cesium点击事件未绑定");
+          }
+          return;
+        }
+      } else {
+        console.error("该点击位置没有Entity实例")
+      }
+    },
   },
   mounted() {
     this.cesiumInit();
-    // this.polygonInit();
+    this.polygonInit();
   }
 }
 </script>
