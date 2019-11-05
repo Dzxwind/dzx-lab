@@ -21,12 +21,16 @@
       </transition>
       <button @click="startDEJAVU">Start</button>
     </div>
+    <flip-num></flip-num>
   </div>
 </template>
 <script>
 import {TweenMax,TimelineMax} from "gsap"
-
+import FlipNum from "@/components/FlipNum"
 export default {
+  components:{
+    FlipNum
+  },
   data() {
     return {
       isTagShow:false,
