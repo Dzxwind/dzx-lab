@@ -23,6 +23,16 @@ export default {
         selectionIndicator: false,
         baseLayerPicker: false,
         shouldAnimate: true,
+        fullscreenButton: false,
+        animation: false,
+        baseLayerPicker: false,
+        homeButton: false,
+        geocoder: false,
+        timeline: true,
+        sceneModePicker: false,
+        navigationHelpButton: false,
+        infoBox: false,
+        skyBox: false,
         // 蓝黑色底图图层
         // imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
         //   url: this.layerAddress,
@@ -52,13 +62,14 @@ export default {
         }
       }
       this.viewer.camera.setView(this.homeCameraView)
-
     },
     timeInit() {
+      let currentTime = this.moment().utc().format();
+      let pastTime = this.moment().subtract(5,'d').utc().format();
       // 设置时钟和时间线
-      this.viewer.clock.startTime = Cesium.JulianDate.fromIso8601("2017-07-11T16:00:00Z");
-      this.viewer.clock.stopTime = Cesium.JulianDate.fromIso8601("2017-07-11T16:20:00Z");
-      this.viewer.clock.currentTime = Cesium.JulianDate.fromIso8601("2017-07-11T16:00:00Z");
+      this.viewer.clock.startTime = Cesium.JulianDate.fromIso8601(pastTime);
+      this.viewer.clock.stopTime = Cesium.JulianDate.fromIso8601(currentTime);
+      this.viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(currentTime);
       this.viewer.clock.multiplier = 200; // 设置加速倍率
       this.viewer.clock.clockStep = Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER; // tick computation mode(还没理解具体含义)
       this.viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP; // 循环播放
@@ -112,6 +123,7 @@ export default {
   },
   mounted() {
     this.cesiumInit();
+    this.timeInit();
     this.polygonInit();
   }
 }
