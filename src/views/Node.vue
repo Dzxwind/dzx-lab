@@ -1,6 +1,7 @@
 <template>
   <div class="node">
     值：{{countAll}}
+    <span>test</span>
   </div>  
 </template>
 <script>
@@ -12,7 +13,7 @@ export default {
       sumArr: [
         {
           name:'test',
-          value:2
+          value:21
         },
         {
           name:'test2',
