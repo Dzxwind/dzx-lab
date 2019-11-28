@@ -1,6 +1,7 @@
 <template>
   <div class="node">
     值：{{countAll}}
+    <span>test</span>
   </div>  
 </template>
 <script>
