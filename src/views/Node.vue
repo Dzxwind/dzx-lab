@@ -12,7 +12,7 @@ export default {
       sumArr: [
         {
           name:'test',
-          value:2
+          value:21
         },
         {
           name:'test2',
