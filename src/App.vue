@@ -12,6 +12,9 @@
       <router-link to="/gsap">GSAP</router-link> |
       <router-link to="/frame">Frame</router-link> |
       <router-link to="/svg">Svg</router-link> |
+      <router-link to="/mapbox">MapBox</router-link> |
+      <router-link to="/echarts">Echarts</router-link> |
+      <router-link to="/d3">d3</router-link>
     </div>
     <router-view/>
   </div>
@@ -21,7 +24,7 @@
 export default {
   data() {
     return {
-      exceptItem:['cesium','amap','aframe','frame']
+      exceptItem:['cesium','amap','aframe','frame','mapbox']
     }
   },
   computed:{
@@ -58,7 +61,7 @@ html,body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  // text-align: center;
   color: #2c3e50;
 }
 #nav {

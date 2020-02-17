@@ -47,6 +47,7 @@
       <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
     </svg>
     <h2>蒙版</h2>
+    <!-- 白色表示被填充，黑色表示不填充。其他颜色根据颜色的亮度来决定 -->
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <linearGradient id="Gradient">
@@ -107,6 +108,19 @@
       </defs>
       <rect mask="url(#shin-mask)" width="590px" height="450px" x="10px" y="20px" stroke="#4583d0" fill="#000" stroke-width="20px"  />
       <image height='477' width="611" :xlink:href="require('@/assets/shin.png')"></image>
+    </svg>
+    <h2>SMIL动画</h2>
+    <svg width="500px" height="500px" viewBox="0 0 500 500"> 
+      <rect x="0" y="0" width="100" height="100" fill="#feac5e">
+        <animate attributeName="x" from="0" to="500" dur="2s" repeatCount="indefinite"></animate>
+        <animate attributeName="width" to="500" dur="2s" repeatCount="indefinite" />
+        <animate attributeName="fill" to="black" dur="2s" repeatCount="indefinite" />
+      </rect>
+    </svg>
+    <svg width="500px" height="500px" viewBox="0 0 500 500">
+      <rect x="250" y="250" width="50" height="50" fill="#4bc0c8">
+        <animateTransform attributeName="transform" type="rotate" begin="0s" dur="10s" from="0 250 250" to="360 250 250" repeatCount="indefinite" />
+      </rect>
     </svg>
   </div>
 </template>

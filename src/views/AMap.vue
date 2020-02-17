@@ -4,6 +4,8 @@
   </div>  
 </template>
 <script>
+const TToken = '8c1b781a99db8a874e662dc5b57300bc';
+import cordTrans from 'coordtransform'
 export default {
   data() {
     return {
@@ -13,15 +15,23 @@ export default {
       markerList:[
         {
           name:"test1",
-          position:[120.215612,30.210663]
+          position:cordTrans.gcj02towgs84(...[120.215612,30.210663])
+          // position:[120.215612,30.210663]
         },
         {
           name:"test2",
-          position:[120.221942,30.205377]
+          position:cordTrans.gcj02towgs84(...[120.221942,30.205377])
+          // position:[120.221942,30.205377]
         },
         {
-          name:"test3",
-          position:[120.217248,30.212657]
+          name:"滨江区政府",
+          position:cordTrans.gcj02towgs84(...[120.212046,30.208429])
+          // position:[120.212046,30.208429]
+        },
+        {
+          name:"圆盘交界处",
+          position:cordTrans.gcj02towgs84(...[120.214119,30.207636])
+          // position:[120.214119,30.207636]
         },
       ]
     }
@@ -33,25 +43,42 @@ export default {
         resizeEnable: true,
         rotateEnable: true,
         pitchEnable: true,
-        center:[120.219534,30.212893],
         viewMode:'3D',
-        layers:[this.layer,this.building],
+        center:[120.219534,30.212893],
+        crs:'EPSG4326',
+        layers:[
+          ...this.TLayer
+        ],
         buildingAnimation: true,
         expandZoomRange: true,
-        pitch: 80,
       })
+      this.map.on('click',(e) => {
+        console.log(e);
+        
+      })
+    },
+    // 天地图底图
+    TLayerInit() {
+      this.TLayer = [
+        new AMap.TileLayer({
+          getTileUrl: 'http://t{0,1,2,3,4,5,6,7}.tianditu.gov.cn/DataServer?T=vec_c&x=[x]&y=[y]&l=[z]&tk=' + TToken,
+        }),
+        new AMap.TileLayer({
+          getTileUrl: 'http://t{0,1,2,3,4,5,6,7}.tianditu.gov.cn/DataServer?T=cva_c&x=[x]&y=[y]&l=[z]&tk=' + TToken,
+        })
+      ]
     },
     layerInit() {
       this.layer = new AMap.TileLayer({
-        getTileUrl: 'http://mt{1,2,3,0}.google.cn/vt/lyrs=y@142&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galil',
+        getTileUrl: 'http://mt{1,2,3,0}.google.cn/vt/lyrs=m@142&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galil',
       });
       // this.layer.setMap(this.map)
     },
     buildingInit() {
       this.building = new AMap.Buildings({
-        zooms:[16,18],
+        zooms:[13,18],
         zIndex:10,
-        heightFactor:2
+        heightFactor:10
       })
     },
     markerInit() {
@@ -66,11 +93,14 @@ export default {
     }
   },
   mounted() {
+    this.TLayerInit();
     this.layerInit();
     this.buildingInit();
     this.amapInit();
     this.markerInit();
     this.onMarkerClick();
+    console.log(AMap.GeometryUtil.distance([120.08537572188001,30.128106653076934],[120.093621369532,30.123650961536]));
+    
   },
   computed:{
     markerShowList() {

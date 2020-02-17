@@ -2,6 +2,9 @@
   <div class="node">
     值：{{countAll}}
     <span>test</span>
+    <div class="request-list">
+      <div class="request-list_i" v-for="(value,key) in requestObj" :key="key">{{key}}：{{value}}</div>
+    </div>
   </div>  
 </template>
 <script>
@@ -27,15 +30,17 @@ export default {
           name:'test4',
           value:15
         },
-      ]
+      ],
+      requestObj:null
     }
   },
   mounted(){
-    // axios.get('http://172.16.70.44:3000/getAllData').then(res => {
+    // axios.get('http://localhost:3000/getAllData').then(res => {
     //   console.log(res.data);
     // })
-    axios.get(`http://172.16.70.44:3000/users`).then(res => {
-      console.log(res.data);
+    axios.get(`http://localhost:3000/test?face=😄`).then(res => {
+      this.requestObj = res.data;
+      console.log(JSON.stringify(this.requestObj));
       
     })
   },

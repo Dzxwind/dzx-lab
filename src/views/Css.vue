@@ -57,6 +57,7 @@
     <div class="moudle moudle10">
       <div class="block"></div>
     </div>
+    <div class="hole"></div>
   </div>
 </template>
 <script>
@@ -409,6 +410,22 @@ export default {
       clip-path: polygon(0 0,0 0,0 100%,0 100%);
       animation: changePath 2s linear infinite alternate;
     }
+  }
+  .hole {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hole:after {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    left: -50px;
+    top: -50px;
+    content: '';
+    border-radius: 50%;
+    border: 80px solid #0079AB;
   }
 }
 </style>

@@ -54,14 +54,16 @@ export default {
       this.viewer.scene.globe.depthTestAgainstTerrain = true;
       // 设置摄像机初始位置
       this.homeCameraView = {
-        destination: Cesium.Cartesian3.fromDegrees(120.216372, 30.25277, 10000),
+        destination: Cesium.Cartesian3.fromDegrees(86.93047,27.986914, 10000),
         orientation: {
           heading: 0,
           pitch: Cesium.Math.toRadians(-40),
           roll: 0,
         }
-      }
-      this.viewer.camera.setView(this.homeCameraView)
+      };
+      setTimeout(() => {
+        this.viewer.camera.flyTo(this.homeCameraView)
+      }, 5000);
     },
     timeInit() {
       let currentTime = this.moment().utc().format();
@@ -78,6 +80,7 @@ export default {
     polygonInit() {
       let polygon = this.viewer.entities.add({
         name: "古拉基尔蓝图",
+        type: "Polygon",
         polygon: {
           hierarchy: Cesium.Cartesian3.fromDegreesArray([
             -109.080842, 45.002073,
@@ -99,7 +102,6 @@ export default {
           outlineColor: Cesium.Color.BLACK
         }
       })
-      this.viewer.zoomTo(polygon)
     },
     onMapClick(e) {
       this.pick = null;
@@ -120,9 +122,15 @@ export default {
         console.error("该点击位置没有Entity实例")
       }
     },
+    onPolygonClick() {
+      console.log(this.pick);
+      this.viewer.flyTo(this.pick);
+    },
   },
   mounted() {
     this.cesiumInit();
+    console.log(this.viewer);
+    
     this.timeInit();
     this.polygonInit();
   }
@@ -133,5 +141,9 @@ export default {
 .cesium {
   width: 100%;
   height: 100%;
+  #cesiumContainer {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

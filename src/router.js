@@ -1,16 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
-import Css from './views/Css.vue'
-import Node from './views/Node.vue'
-import Jsx from './views/jsx/Jsx.vue'
-import Cesium from './views/Cesium.vue'
-import AMap from './views/AMap.vue'
-import AFrame from './views/AFrame.vue'
-import Gsap from './views/Gsap.vue'
-import Frame from './views/Frame/Frame.vue'
-import Svg from './views/Svg.vue'
 
 Vue.use(Router)
 
@@ -19,57 +8,72 @@ let router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: () => import('./views/Home.vue')
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: () => import('./views/About.vue')
     },
     {
       path: '/css',
       name: 'css',
-      component: Css
+      component: () => import('./views/Css.vue')
     },
     {
       path: '/node',
       name: 'node',
-      component: Node
+      component: () => import('./views/Node.vue')
     },
     {
       path: '/jsx',
       name: 'jsx',
-      component: Jsx
+      component: () => import('./views/jsx/Jsx.vue')
     },
     {
       path: '/cesium',
       name: 'cesium',
-      component: Cesium
+      component: () => import('./views/Cesium.vue')
     },
     {
       path: '/amap',
       name: 'amap',
-      component: AMap
+      component: () => import('./views/AMap.vue')
     },
     {
       path: '/aframe',
       name: 'aframe',
-      component: AFrame
+      component: () => import('./views/AFrame.vue')
     },
     {
       path: '/gsap',
       name: 'gsap',
-      component: Gsap
+      component: () => import('./views/Gsap.vue')
     },
     {
       path: '/frame',
       name: 'frame',
-      component: Frame
+      component: () => import('./views/Frame/Frame.vue')
     },
     {
       path: '/svg',
       name: 'svg',
-      component: Svg
+      component: () => import('./views/Svg.vue')
+    },
+    {
+      path: '/mapbox',
+      name: 'mapbox',
+      component: () => import('./views/MapBox.vue')
+    },
+    {
+      path: '/echarts',
+      name: 'echarts',
+      component: () => import('./views/echarts/Echarts.vue')
+    },
+    {
+      path: '/d3',
+      name: 'd3',
+      component: () => import('./views/d3/d3.vue')
     },
   ]
 })
